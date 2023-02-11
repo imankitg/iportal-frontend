@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  updateInternship,
   deleteInternship,
   changeMode,
   selInternship,
 } from '../features/internship/internshipSlice'
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material'
 import InternshipForm from './forms/InternshipForm'
+import { toast } from 'react-toastify'
 
 function InternshipItem({ internship }) {
   const { user } = useSelector((state) => state.auth)
@@ -22,6 +22,10 @@ function InternshipItem({ internship }) {
 
   const handleDelete = () => {
     dispatch(deleteInternship(internship._id))
+      .unwrap()
+      .then(() => {
+        toast.success("Internship deleted successfully")
+      })
     setOpen(false)
   }
 

@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { toast } from 'react-toastify'
-// import GoalForm from '../components/GoalForm'
 import InternshipItem from '../components/InternshipItem'
 import Spinner from '../components/Spinner'
 import { getInternships } from '../features/internship/internshipSlice'
-import {reset} from '../features/auth/authSlice'
+import { reset } from '../features/auth/authSlice'
 import InternshipForm from '../components/forms/InternshipForm'
-
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -36,7 +33,6 @@ function Dashboard() {
       dispatch(reset())
     }
   }, [user, navigate, isError, message, dispatch])
-  
 
   if (isLoading) {
     return <Spinner />
@@ -44,35 +40,55 @@ function Dashboard() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>Welcome {user && user.name}</h1>
-        <p>Check out these Internships</p>
-      </section>
+      <div className='container'>
+        <section className='heading align'>
+          <div></div>
+          <div>
+            <h1>Welcome {user && user.name}</h1>
+            <p className={user && user.role === 'admin' ? 'd-none' : ''}>
+              Check out these Internships
+            </p>
+          </div>
+          <div className='form-button'>
+            {user && user.role === 'admin' ? (
+              <>
+                <InternshipForm
+                  openIntForm={openIntForm}
+                  setOpenIntForm={setOpenIntForm}
+                />
+                <div className='flex-center mb-1'>
+                  <button className='btn' onClick={() => setOpenIntForm(true)}>
+                    + Add new internship
+                  </button>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
+        </section>
 
-      <div className={user && user.role !== 'admin' ? 'd-none' : ''}>
-        <InternshipForm openIntForm={openIntForm} setOpenIntForm={setOpenIntForm} />
-        <div className='container flex-center mb-1'>
-          <button className='btn' onClick={() => setOpenIntForm(true)}>
-            + Add new internship
-          </button>
-        </div>
+        <section className='content'>
+          {internships.length > 0 ? (
+            <div className='internships'>
+              {internships.map((internship) => (
+                <InternshipItem key={internship._id} internship={internship} />
+              ))}
+            </div>
+          ) : (
+            <h3>No Active Internship for now. Check back in few days.</h3>
+          )}
+        </section>
       </div>
 
+      <footer className='content footer'>
        
-
-      {/* <GoalForm /> */}
-
-      <section className='content'>
-        {internships.length > 0 ? (
-          <div className='internships'>
-            {internships.map((internship) => (
-              <InternshipItem key={internship._id} internship={internship} />
-            ))}
-          </div>
-        ) : (
-          <h3>No Active Internship for now. Check back in few days.</h3>
-        )}
-      </section>
+          Copyright &copy; 2023, Made with &#10084; by{' '}
+          <a className='my-profile' href='https://www.linkedin.com/in/iankitg/'>
+            Ankit Gupta
+          </a>
+        
+      </footer>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5001/api/internships/'
+const API_URL = 'https://iportal-backend.onrender.com/api/internships/'
 
 // Create new internship
 const createInternship = async (internshipData, token) => {

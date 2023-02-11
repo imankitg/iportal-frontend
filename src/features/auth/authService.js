@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5001/api/user/'
+const API_URL = 'https://iportal-backend.onrender.com/api/user/'
 
 // Register user
 const register = async (userData) => {
