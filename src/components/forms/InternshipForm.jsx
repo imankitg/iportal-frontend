@@ -11,7 +11,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '70vw',
+  width: '90vw',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -44,6 +44,14 @@ function InternshipForm({openIntForm, setOpenIntForm}) {
         stipend: selectedInternship?.stipend,
         url: selectedInternship.url
       })
+    } else {
+      setFormData({
+        companyName: '',
+        jobTitle: '',
+        location: '',
+        stipend: '',
+        url: '',
+      })
     }
   },[mode])
 
@@ -71,10 +79,11 @@ function InternshipForm({openIntForm, setOpenIntForm}) {
       dispatch(updateInternship(data))
         .unwrap()
         .then(() => {
-          if (isSuccess) {
+          if (isError) {
+            console.log(message)
+            // toast.error(message)
+          } else if (isSuccess) {
             toast.success('Internship Updated')
-          } else if (isError) {
-            toast.error(message)
           }
         })
     } else {

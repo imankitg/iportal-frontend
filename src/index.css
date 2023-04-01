@@ -82,12 +82,24 @@ h3 {
 }
 
 .heading {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 .heading p {
+  color: #828282;
+}
+
+.font-light {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.font-light2 {
+  font-size: 1.2rem;
+}
+
+.color-grey {
   color: #828282;
 }
 
@@ -114,7 +126,7 @@ h3 {
 }
 
 .form {
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -137,6 +149,23 @@ h3 {
   text-align: left;
   display: block;
   margin: 0 0 5px 3px;
+}
+
+.form-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  margin-top: 2rem;
+  height: 50vh;
+  width: 70%;
+}
+
+.width-70  {
+  width: 70%;
 }
 
 .content {
@@ -196,6 +225,13 @@ h3 {
 
 .flex-center {
   display: flex;
+  justify-content: center;
+}
+
+.flex-wrap {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
   justify-content: center;
 }
 

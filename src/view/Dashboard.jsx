@@ -19,7 +19,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (isError) {
-      // toast.error(message)
+      
       console.log(message)
     }
 
